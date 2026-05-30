@@ -4,8 +4,8 @@ import Profile from './components/Profile'
 import ChinaMap from './components/ChinaMap'
 import CityDetail from './components/CityDetail'
 import Footer from './components/Footer'
-import { profile } from './data/profile'
 import { useEditableCities } from './hooks/useEditableCities'
+import { useEditableProfile } from './hooks/useEditableProfile'
 import type { CityTravel } from './types'
 import './App.css'
 
@@ -13,13 +13,22 @@ export default function App() {
   const {
     cities,
     isEditing,
-    isDirty,
+    isDirty: citiesDirty,
     toggleEditMode,
     updateCity,
     addPhotosBatch,
     removePhoto,
-    resetToOriginal,
+    resetToOriginal: resetCities,
   } = useEditableCities()
+
+  const {
+    profile,
+    isDirty: profileDirty,
+    updateProfile,
+    uploadAvatar,
+    removeAvatar,
+    resetProfile,
+  } = useEditableProfile()
 
   const [selectedCity, setSelectedCity] = useState<CityTravel | null>(null)
   const [showMobileDetail, setShowMobileDetail] = useState(false)
@@ -42,6 +51,13 @@ export default function App() {
       )
     : -1
 
+  const isDirty = citiesDirty || profileDirty
+
+  const handleReset = useCallback(() => {
+    resetCities()
+    resetProfile()
+  }, [resetCities, resetProfile])
+
   return (
     <div className="app">
       <Header
@@ -49,13 +65,20 @@ export default function App() {
         isEditing={isEditing}
         isDirty={isDirty}
         onToggleEdit={toggleEditMode}
-        onReset={resetToOriginal}
+        onReset={handleReset}
       />
 
       <main className="main-content">
         <section className="hero-section">
           <div className="hero-left">
-            <Profile profile={profile} visitedCount={cities.length} />
+            <Profile
+              profile={profile}
+              visitedCount={cities.length}
+              isEditing={isEditing}
+              onUpdateProfile={updateProfile}
+              onUploadAvatar={uploadAvatar}
+              onRemoveAvatar={removeAvatar}
+            />
           </div>
           <div className="hero-center">
             <ChinaMap visitedCities={cities} onCityClick={handleCityClick} />
