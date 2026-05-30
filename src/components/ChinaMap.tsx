@@ -19,6 +19,9 @@ export default function ChinaMap({ visitedCities, onCityClick }: ChinaMapProps) 
   const cityDataMap = new Map(visitedCities.map((c) => [c.cityName, c]))
   const visitedNames = new Set(visitedCities.map((c) => c.cityName))
 
+  // 从已访问城市中提取去过的省份
+  const visitedProvinces = new Set(visitedCities.map((c) => c.province))
+
   const initChart = useCallback(() => {
     if (!chartRef.current) return
 
@@ -41,6 +44,23 @@ export default function ChinaMap({ visitedCities, onCityClick }: ChinaMapProps) 
         value: [...c.coordinates, 0],
       }))
 
+    // 为已访问省份构建 regions 配置
+    const visitedRegions = Array.from(visitedProvinces).map((province) => ({
+      name: province,
+      itemStyle: {
+        areaColor: '#1E3A5F',
+        borderColor: '#3B82F6',
+        borderWidth: 1.2,
+        shadowColor: 'rgba(59, 130, 246, 0.25)',
+        shadowBlur: 10,
+      },
+      label: {
+        show: true,
+        color: '#94A3B8',
+        fontSize: 10,
+      },
+    }))
+
     chart.setOption({
       backgroundColor: 'transparent',
       tooltip: {
@@ -54,11 +74,15 @@ export default function ChinaMap({ visitedCities, onCityClick }: ChinaMapProps) 
           fontSize: 13,
         },
         formatter: (params: { name: string }) => {
-          const isVisited = visitedNames.has(params.name)
-          const status = isVisited ? '已访问' : '未访问'
-          const color = isVisited ? '#60A5FA' : '#64748B'
-          return `<strong>${params.name}</strong><br/>
-            <span style="font-size:12px;color:${color}">${status}</span>`
+          if (params.name) {
+            const isProvinceVisited = visitedProvinces.has(params.name)
+            const isCityVisited = visitedNames.has(params.name)
+            const status = isProvinceVisited || isCityVisited ? '已去过' : '未去过'
+            const color = isProvinceVisited || isCityVisited ? '#60A5FA' : '#64748B'
+            return `<strong>${params.name}</strong><br/>
+              <span style="font-size:12px;color:${color}">${status}</span>`
+          }
+          return params.name
         },
       },
       geo: {
@@ -75,6 +99,7 @@ export default function ChinaMap({ visitedCities, onCityClick }: ChinaMapProps) 
           shadowColor: 'rgba(0,0,0,0.3)',
           shadowBlur: 12,
         },
+        regions: visitedRegions,
         emphasis: {
           disabled: true,
         },
