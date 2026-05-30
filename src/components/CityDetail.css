@@ -1,4 +1,6 @@
-/* 空状态 */
+/* ============================================
+   Empty State
+   ============================================ */
 .city-detail-empty {
   background: var(--color-surface);
   border-radius: var(--radius-lg);
@@ -44,22 +46,39 @@
   box-shadow: 0 0 8px var(--color-primary-glow);
 }
 
-/* 城市详情卡片 */
+/* ============================================
+   City Detail Card
+   ============================================ */
 .city-detail {
   background: var(--color-surface);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
-  border: 1px solid var(--color-border);
+  border: 1.5px solid var(--color-border);
   max-height: calc(100vh - 120px);
   overflow-y: auto;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
+.city-detail.edit-mode {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-glow), var(--shadow-md);
+}
+
+/* ============================================
+   Header: Name & Date
+   ============================================ */
 .city-detail-header {
   padding: 24px 24px 0;
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   gap: 12px;
+}
+
+.city-name-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
 }
 
 .city-name {
@@ -70,13 +89,39 @@
   letter-spacing: 1px;
 }
 
+.city-province {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  background: var(--color-bg);
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
 .city-date {
   font-size: 13px;
   color: var(--color-text-muted);
   white-space: nowrap;
 }
 
-/* 照片 */
+.date-input {
+  font-size: 13px;
+  padding: 4px 8px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text);
+  background: var(--color-bg);
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.date-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+/* ============================================
+   Photos
+   ============================================ */
 .city-photos {
   padding: 16px 24px 0;
 }
@@ -97,6 +142,11 @@
   overflow: hidden;
   scroll-snap-align: start;
   background: var(--color-bg);
+  position: relative;
+}
+
+.photo-card.editable {
+  border: 2px dashed var(--color-border);
 }
 
 .photo-img {
@@ -130,12 +180,86 @@
   font-size: 13px;
 }
 
-/* 标签 */
+/* Edit mode: add photo card */
+.photo-edit-area {
+  width: 100%;
+}
+
+.photo-add-card {
+  flex: 0 0 150px;
+  height: 150px;
+  border-radius: var(--radius-sm);
+  border: 2px dashed var(--color-primary);
+  background: var(--color-primary-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  color: var(--color-primary);
+  transition: all 0.2s;
+  scroll-snap-align: start;
+  font-family: inherit;
+}
+
+.photo-add-card:hover {
+  background: var(--color-primary);
+  color: #fff;
+  border-style: solid;
+}
+
+.add-icon {
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.add-text {
+  font-size: 12px;
+}
+
+.file-input-hidden {
+  display: none;
+}
+
+.photo-delete-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 14px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.photo-card.editable:hover .photo-delete-btn {
+  opacity: 1;
+}
+
+.photo-delete-btn:hover {
+  background: #D44;
+}
+
+/* ============================================
+   Tags
+   ============================================ */
 .city-tags {
   padding: 14px 24px 0;
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
+  align-items: center;
 }
 
 .city-tag {
@@ -147,7 +271,60 @@
   color: var(--color-primary);
 }
 
-/* 评分 */
+.city-tag.removable {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding-right: 4px;
+}
+
+.tag-remove-btn {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.15);
+  color: var(--color-primary);
+  font-size: 12px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.tag-remove-btn:hover {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.tag-edit-area {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.tag-select {
+  font-size: 11px;
+  padding: 3px 8px;
+  border: 1px dashed var(--color-border);
+  border-radius: 20px;
+  background: var(--color-bg);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.tag-select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+/* ============================================
+   Rating
+   ============================================ */
 .city-rating {
   padding: 12px 24px 0;
   display: flex;
@@ -162,19 +339,52 @@
 
 .rating-stars {
   display: flex;
+  align-items: center;
   gap: 2px;
 }
 
 .star {
-  font-size: 16px;
+  font-size: 18px;
   color: #DDD6CB;
+  transition: color 0.15s;
+}
+
+.rating-stars.editable .star {
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.rating-stars.editable .star:hover {
+  color: #E8A840;
 }
 
 .star.filled {
   color: #E8A840;
 }
 
-/* 元数据行 */
+.clear-rating-btn {
+  margin-left: 6px;
+  font-size: 11px;
+  border: none;
+  background: none;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.clear-rating-btn:hover {
+  color: #D44;
+}
+
+.rating-empty {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+/* ============================================
+   Meta Rows (companions, foods, attractions)
+   ============================================ */
 .city-meta-row {
   padding: 10px 24px 0;
   display: flex;
@@ -187,6 +397,7 @@
   color: var(--color-text-muted);
   white-space: nowrap;
   font-weight: 500;
+  min-width: 52px;
 }
 
 .meta-value {
@@ -195,7 +406,76 @@
   line-height: 1.5;
 }
 
-/* 日记 */
+/* Chip edit area */
+.chip-edit-area {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  flex: 1;
+}
+
+.chip {
+  font-size: 12px;
+  padding: 2px 4px 2px 10px;
+  border-radius: 14px;
+  background: var(--color-bg);
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.chip-remove-btn {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.08);
+  color: var(--color-text-secondary);
+  font-size: 11px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.chip-remove-btn:hover {
+  background: #D44;
+  color: #fff;
+}
+
+.chip-add-form {
+  display: inline-flex;
+}
+
+.chip-input {
+  font-size: 12px;
+  padding: 3px 10px;
+  border: 1px dashed var(--color-border);
+  border-radius: 14px;
+  background: transparent;
+  color: var(--color-text);
+  font-family: inherit;
+  width: 100px;
+  outline: none;
+}
+
+.chip-input:focus {
+  border-color: var(--color-primary);
+  width: 130px;
+}
+
+.chip-input::placeholder {
+  color: var(--color-text-muted);
+}
+
+/* ============================================
+   Diary
+   ============================================ */
 .city-diary {
   padding: 20px 24px 24px;
 }
@@ -220,17 +500,63 @@
   margin-bottom: 10px;
 }
 
-/* 滚动条微调 */
+/* Edit mode diary */
+.diary-edit-area {
+  display: flex;
+  flex-direction: column;
+}
+
+.diary-textarea {
+  width: 100%;
+  min-height: 220px;
+  padding: 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-serif);
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--color-text);
+  background: var(--color-bg);
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.diary-textarea:focus {
+  border-color: var(--color-primary);
+}
+
+.diary-textarea::placeholder {
+  color: var(--color-text-muted);
+}
+
+.diary-char-count {
+  text-align: right;
+  font-size: 11px;
+  color: var(--color-text-muted);
+  margin-top: 6px;
+}
+
+/* ============================================
+   Scrollbar
+   ============================================ */
 .city-detail::-webkit-scrollbar {
   width: 4px;
 }
 
+/* ============================================
+   Mobile
+   ============================================ */
 @media (max-width: 960px) {
   .city-detail {
     max-height: none;
     border-radius: 0;
     box-shadow: none;
     border: none;
+  }
+
+  .city-detail.edit-mode {
+    box-shadow: none;
   }
 
   .city-detail-header,
@@ -245,5 +571,15 @@
 
   .city-detail-header {
     padding-top: 0;
+  }
+
+  .photo-card {
+    flex: 0 0 160px;
+    height: 120px;
+  }
+
+  .photo-add-card {
+    flex: 0 0 130px;
+    height: 120px;
   }
 }

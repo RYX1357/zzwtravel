@@ -5,49 +5,88 @@ import ChinaMap from './components/ChinaMap'
 import CityDetail from './components/CityDetail'
 import Footer from './components/Footer'
 import { profile } from './data/profile'
-import { visitedCities } from './data/travels'
+import { useEditableCities } from './hooks/useEditableCities'
 import type { CityTravel } from './types'
 import './App.css'
 
 export default function App() {
+  const {
+    cities,
+    isEditing,
+    isDirty,
+    toggleEditMode,
+    updateCity,
+    addPhotosBatch,
+    removePhoto,
+    resetToOriginal,
+  } = useEditableCities()
+
   const [selectedCity, setSelectedCity] = useState<CityTravel | null>(null)
   const [showMobileDetail, setShowMobileDetail] = useState(false)
 
   const handleCityClick = useCallback((city: CityTravel) => {
-    setSelectedCity(city)
+    const latest = cities.find(
+      (c) => c.cityName === city.cityName && c.province === city.province,
+    )
+    setSelectedCity(latest ?? city)
     setShowMobileDetail(true)
-  }, [])
+  }, [cities])
 
   const handleCloseDetail = useCallback(() => {
     setShowMobileDetail(false)
   }, [])
 
+  const selectedCityIndex = selectedCity
+    ? cities.findIndex(
+        (c) => c.cityName === selectedCity.cityName && c.province === selectedCity.province,
+      )
+    : -1
+
   return (
     <div className="app">
-      <Header name={profile.name} />
+      <Header
+        name={profile.name}
+        isEditing={isEditing}
+        isDirty={isDirty}
+        onToggleEdit={toggleEditMode}
+        onReset={resetToOriginal}
+      />
 
       <main className="main-content">
         <section className="hero-section">
           <div className="hero-left">
-            <Profile profile={profile} visitedCount={visitedCities.length} />
+            <Profile profile={profile} visitedCount={cities.length} />
           </div>
           <div className="hero-center">
-            <ChinaMap visitedCities={visitedCities} onCityClick={handleCityClick} />
+            <ChinaMap visitedCities={cities} onCityClick={handleCityClick} />
           </div>
           <div className="hero-right">
-            <CityDetail city={selectedCity} />
+            <CityDetail
+              city={selectedCity}
+              isEditing={isEditing}
+              cityIndex={selectedCityIndex}
+              onUpdateCity={updateCity}
+              onAddPhotos={addPhotosBatch}
+              onRemovePhoto={removePhoto}
+            />
           </div>
         </section>
       </main>
 
-      {/* 移动端城市详情弹出层 */}
       {showMobileDetail && selectedCity && (
         <div className="mobile-overlay" onClick={handleCloseDetail}>
           <div className="mobile-drawer" onClick={(e) => e.stopPropagation()}>
             <button className="mobile-drawer-close" onClick={handleCloseDetail}>
               &times;
             </button>
-            <CityDetail city={selectedCity} />
+            <CityDetail
+              city={selectedCity}
+              isEditing={isEditing}
+              cityIndex={selectedCityIndex}
+              onUpdateCity={updateCity}
+              onAddPhotos={addPhotosBatch}
+              onRemovePhoto={removePhoto}
+            />
           </div>
         </div>
       )}
