@@ -25,7 +25,7 @@
 
 .hero-left {
   position: sticky;
-  top: 24px;
+  top: 84px;
 }
 
 .hero-center {
@@ -37,10 +37,10 @@
 
 .hero-right {
   position: sticky;
-  top: 24px;
+  top: 84px;
 }
 
-/* 移动端城市详情弹出层 */
+/* Mobile detail overlay */
 .mobile-overlay {
   display: none;
 }
@@ -81,10 +81,12 @@
     display: flex;
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(15, 23, 42, 0.5);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     z-index: 1000;
     align-items: flex-end;
-    animation: fadeIn 0.25s ease;
+    animation: fadeIn 0.2s ease;
   }
 
   .mobile-drawer {
@@ -92,10 +94,10 @@
     max-height: 85vh;
     overflow-y: auto;
     background: var(--color-surface);
-    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
     padding: 24px 16px 32px;
     position: relative;
-    animation: slideUp 0.3s ease;
+    animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .mobile-drawer-close {
@@ -113,6 +115,12 @@
     align-items: center;
     justify-content: center;
     line-height: 1;
+    transition: all 0.15s ease;
+  }
+
+  .mobile-drawer-close:hover {
+    background: var(--color-danger-light);
+    color: var(--color-danger);
   }
 }
 

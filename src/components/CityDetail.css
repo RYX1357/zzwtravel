@@ -3,9 +3,9 @@
    ============================================ */
 .city-detail-empty {
   background: var(--color-surface);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
   padding: 48px 28px;
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-lg);
   border: 1px solid var(--color-border);
   text-align: center;
 }
@@ -18,6 +18,7 @@
   font-size: 44px;
   display: block;
   margin-bottom: 14px;
+  opacity: 0.7;
 }
 
 .empty-illustration h3 {
@@ -35,6 +36,7 @@
   justify-content: center;
   gap: 6px;
   flex-wrap: wrap;
+  color: var(--color-text-secondary);
 }
 
 .highlight-dot {
@@ -51,17 +53,17 @@
    ============================================ */
 .city-detail {
   background: var(--color-surface);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
   border: 1.5px solid var(--color-border);
   max-height: calc(100vh - 120px);
   overflow-y: auto;
-  transition: border-color 0.3s, box-shadow 0.3s;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .city-detail.edit-mode {
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px var(--color-primary-glow), var(--shadow-md);
+  box-shadow: 0 0 0 3px var(--color-primary-glow), var(--shadow-lg);
 }
 
 /* ============================================
@@ -86,7 +88,7 @@
   font-size: 26px;
   font-weight: 700;
   color: var(--color-text);
-  letter-spacing: 1px;
+  letter-spacing: 0.02em;
 }
 
 .city-province {
@@ -95,12 +97,14 @@
   background: var(--color-bg);
   padding: 2px 8px;
   border-radius: 10px;
+  font-weight: 500;
 }
 
 .city-date {
   font-size: 13px;
   color: var(--color-text-muted);
   white-space: nowrap;
+  font-weight: 500;
 }
 
 .date-input {
@@ -112,11 +116,13 @@
   background: var(--color-bg);
   font-family: inherit;
   cursor: pointer;
+  transition: border-color 0.2s ease;
 }
 
 .date-input:focus {
   outline: none;
   border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-glow);
 }
 
 /* ============================================
@@ -147,12 +153,18 @@
 
 .photo-card.editable {
   border: 2px dashed var(--color-border);
+  border-radius: var(--radius-sm);
 }
 
 .photo-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.photo-card:hover .photo-img {
+  transform: scale(1.05);
 }
 
 .photo-fallback {
@@ -198,7 +210,7 @@
   gap: 6px;
   cursor: pointer;
   color: var(--color-primary);
-  transition: all 0.2s;
+  transition: all 0.2s ease;
   scroll-snap-align: start;
   font-family: inherit;
 }
@@ -207,6 +219,7 @@
   background: var(--color-primary);
   color: #fff;
   border-style: solid;
+  transform: translateY(-1px);
 }
 
 .add-icon {
@@ -217,6 +230,7 @@
 
 .add-text {
   font-size: 12px;
+  font-weight: 500;
 }
 
 .file-input-hidden {
@@ -231,7 +245,7 @@
   height: 22px;
   border-radius: 50%;
   border: none;
-  background: rgba(0, 0, 0, 0.55);
+  background: rgba(15, 23, 42, 0.6);
   color: #fff;
   font-size: 14px;
   line-height: 1;
@@ -240,7 +254,8 @@
   justify-content: center;
   cursor: pointer;
   opacity: 0;
-  transition: opacity 0.2s;
+  transition: opacity 0.2s ease, background 0.2s ease;
+  backdrop-filter: blur(4px);
 }
 
 .photo-card.editable:hover .photo-delete-btn {
@@ -248,7 +263,7 @@
 }
 
 .photo-delete-btn:hover {
-  background: #D44;
+  background: var(--color-danger);
 }
 
 /* ============================================
@@ -265,10 +280,11 @@
 .city-tag {
   font-size: 11px;
   font-weight: 600;
-  padding: 3px 10px;
+  padding: 4px 12px;
   border-radius: 20px;
   background: var(--color-primary-light);
   color: var(--color-primary);
+  letter-spacing: 0.02em;
 }
 
 .city-tag.removable {
@@ -283,7 +299,7 @@
   height: 16px;
   border-radius: 50%;
   border: none;
-  background: rgba(0, 0, 0, 0.15);
+  background: rgba(59, 130, 246, 0.18);
   color: var(--color-primary);
   font-size: 12px;
   line-height: 1;
@@ -292,6 +308,7 @@
   align-items: center;
   justify-content: center;
   padding: 0;
+  transition: all 0.15s ease;
 }
 
 .tag-remove-btn:hover {
@@ -308,13 +325,14 @@
 
 .tag-select {
   font-size: 11px;
-  padding: 3px 8px;
+  padding: 4px 10px;
   border: 1px dashed var(--color-border);
   border-radius: 20px;
   background: var(--color-bg);
   color: var(--color-text-secondary);
   cursor: pointer;
   font-family: inherit;
+  transition: border-color 0.2s ease;
 }
 
 .tag-select:focus {
@@ -335,6 +353,7 @@
 .rating-label {
   font-size: 12px;
   color: var(--color-text-muted);
+  font-weight: 500;
 }
 
 .rating-stars {
@@ -345,8 +364,8 @@
 
 .star {
   font-size: 18px;
-  color: #DDD6CB;
-  transition: color 0.15s;
+  color: #E2E8F0;
+  transition: color 0.15s ease, transform 0.15s ease;
 }
 
 .rating-stars.editable .star {
@@ -355,11 +374,12 @@
 }
 
 .rating-stars.editable .star:hover {
-  color: #E8A840;
+  color: var(--color-star);
+  transform: scale(1.15);
 }
 
 .star.filled {
-  color: #E8A840;
+  color: var(--color-star);
 }
 
 .clear-rating-btn {
@@ -371,10 +391,11 @@
   cursor: pointer;
   text-decoration: underline;
   padding: 0;
+  transition: color 0.15s ease;
 }
 
 .clear-rating-btn:hover {
-  color: #D44;
+  color: var(--color-danger);
 }
 
 .rating-empty {
@@ -417,7 +438,7 @@
 
 .chip {
   font-size: 12px;
-  padding: 2px 4px 2px 10px;
+  padding: 3px 4px 3px 10px;
   border-radius: 14px;
   background: var(--color-bg);
   color: var(--color-text-secondary);
@@ -425,6 +446,7 @@
   display: inline-flex;
   align-items: center;
   gap: 3px;
+  font-weight: 500;
 }
 
 .chip-remove-btn {
@@ -432,7 +454,7 @@
   height: 16px;
   border-radius: 50%;
   border: none;
-  background: rgba(0, 0, 0, 0.08);
+  background: rgba(0, 0, 0, 0.06);
   color: var(--color-text-secondary);
   font-size: 11px;
   line-height: 1;
@@ -441,10 +463,11 @@
   align-items: center;
   justify-content: center;
   padding: 0;
+  transition: all 0.15s ease;
 }
 
 .chip-remove-btn:hover {
-  background: #D44;
+  background: var(--color-danger);
   color: #fff;
 }
 
@@ -454,7 +477,7 @@
 
 .chip-input {
   font-size: 12px;
-  padding: 3px 10px;
+  padding: 4px 10px;
   border: 1px dashed var(--color-border);
   border-radius: 14px;
   background: transparent;
@@ -462,6 +485,7 @@
   font-family: inherit;
   width: 100px;
   outline: none;
+  transition: border-color 0.2s ease, width 0.2s ease;
 }
 
 .chip-input:focus {
@@ -482,22 +506,23 @@
 
 .diary-title {
   font-family: var(--font-serif);
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 600;
   color: var(--color-text);
-  margin-bottom: 12px;
-  padding-bottom: 8px;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
   border-bottom: 1px solid var(--color-border);
+  letter-spacing: 0.02em;
 }
 
 .diary-content {
   font-size: 13px;
-  line-height: 1.8;
+  line-height: 1.85;
   color: var(--color-text-secondary);
 }
 
 .diary-content p {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 /* Edit mode diary */
@@ -508,22 +533,23 @@
 
 .diary-textarea {
   width: 100%;
-  min-height: 220px;
+  min-height: 240px;
   padding: 14px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   font-family: var(--font-serif);
   font-size: 13px;
-  line-height: 1.8;
+  line-height: 1.85;
   color: var(--color-text);
   background: var(--color-bg);
   resize: vertical;
   outline: none;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .diary-textarea:focus {
   border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-glow);
 }
 
 .diary-textarea::placeholder {
@@ -535,6 +561,7 @@
   font-size: 11px;
   color: var(--color-text-muted);
   margin-top: 6px;
+  font-weight: 500;
 }
 
 /* ============================================

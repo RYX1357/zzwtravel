@@ -1,15 +1,15 @@
 .profile-card {
   background: var(--color-surface);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
   padding: 28px 24px;
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-lg);
   border: 1.5px solid var(--color-border);
-  transition: border-color 0.3s, box-shadow 0.3s;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .profile-card.edit-mode {
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px var(--color-primary-glow), var(--shadow-md);
+  box-shadow: 0 0 0 3px var(--color-primary-glow), var(--shadow-lg);
 }
 
 /* ---- Avatar ---- */
@@ -32,13 +32,14 @@
   height: 80px;
   border-radius: 50%;
   object-fit: cover;
+  box-shadow: var(--shadow-md);
 }
 
 .profile-avatar-placeholder {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background: var(--color-primary-light);
+  background: linear-gradient(135deg, var(--color-primary-light), #DBEAFE);
   color: var(--color-primary);
   display: flex;
   align-items: center;
@@ -46,6 +47,7 @@
   font-size: 32px;
   font-weight: 700;
   font-family: var(--font-serif);
+  box-shadow: var(--shadow-md);
 }
 
 .avatar-remove-btn {
@@ -56,7 +58,7 @@
   height: 22px;
   border-radius: 50%;
   border: 2px solid #fff;
-  background: #D44;
+  background: var(--color-danger);
   color: #fff;
   font-size: 13px;
   line-height: 1;
@@ -65,18 +67,20 @@
   align-items: center;
   justify-content: center;
   padding: 0;
+  box-shadow: var(--shadow-sm);
 }
 
 .avatar-upload-btn {
   font-size: 12px;
-  padding: 4px 12px;
+  padding: 5px 14px;
   border: 1px dashed var(--color-primary);
   border-radius: 14px;
   background: var(--color-primary-light);
   color: var(--color-primary);
   cursor: pointer;
   font-family: inherit;
-  transition: all 0.2s;
+  font-weight: 500;
+  transition: all 0.2s ease;
 }
 
 .avatar-upload-btn:hover {
@@ -96,7 +100,7 @@
   color: var(--color-text);
   margin-bottom: 4px;
   font-family: var(--font-serif);
-  letter-spacing: 1px;
+  letter-spacing: 0.02em;
 }
 
 .profile-name-input {
@@ -104,18 +108,20 @@
   font-weight: 700;
   color: var(--color-text);
   font-family: var(--font-serif);
-  letter-spacing: 1px;
+  letter-spacing: 0.02em;
   width: 100%;
-  padding: 4px 8px;
+  padding: 5px 10px;
   margin-bottom: 4px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   background: var(--color-bg);
   outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .profile-name-input:focus {
   border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-glow);
 }
 
 /* ---- Occupation ---- */
@@ -129,17 +135,19 @@
   font-size: 14px;
   color: var(--color-text);
   width: 100%;
-  padding: 4px 8px;
+  padding: 5px 10px;
   margin-bottom: 6px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   background: var(--color-bg);
   outline: none;
   font-family: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .profile-field-input:focus {
   border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-glow);
 }
 
 .hometown-input {
@@ -164,7 +172,7 @@
   display: flex;
   gap: 16px;
   margin-bottom: 18px;
-  padding: 14px 0;
+  padding: 16px 0;
   border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
 }
@@ -177,7 +185,7 @@
 }
 
 .stat-number {
-  font-size: 28px;
+  font-size: 30px;
   font-weight: 700;
   color: var(--color-primary);
   font-family: var(--font-serif);
@@ -185,47 +193,50 @@
 }
 
 .stat-label {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--color-text-muted);
+  font-weight: 500;
 }
 
-/* ---- Bio ---- */
+/* ---- Sections ---- */
 .profile-section {
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 
 .section-label {
-  font-size: 11px;
-  font-weight: 600;
+  font-size: 10px;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.08em;
   color: var(--color-text-muted);
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .profile-bio {
   font-size: 13px;
   color: var(--color-text-secondary);
-  line-height: 1.7;
+  line-height: 1.75;
   margin-bottom: 4px;
 }
 
 .profile-bio-textarea {
   width: 100%;
-  padding: 10px;
+  padding: 10px 12px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   font-size: 13px;
-  line-height: 1.7;
+  line-height: 1.75;
   color: var(--color-text);
   background: var(--color-bg);
   resize: vertical;
   font-family: inherit;
   outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .profile-bio-textarea:focus {
   border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-glow);
 }
 
 /* ---- Hobbies ---- */
@@ -237,11 +248,11 @@
 
 .hobby-tag {
   font-size: 12px;
-  padding: 3px 10px;
+  padding: 4px 12px;
   border-radius: 20px;
   background: var(--color-primary-light);
   color: var(--color-primary);
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .hobby-tag.removable {
@@ -256,7 +267,7 @@
   height: 16px;
   border-radius: 50%;
   border: none;
-  background: rgba(0, 0, 0, 0.12);
+  background: rgba(59, 130, 246, 0.18);
   color: var(--color-primary);
   font-size: 12px;
   line-height: 1;
@@ -265,6 +276,7 @@
   align-items: center;
   justify-content: center;
   padding: 0;
+  transition: all 0.15s ease;
 }
 
 .tag-remove-btn:hover {
@@ -285,7 +297,7 @@
 
 .chip-input {
   font-size: 12px;
-  padding: 3px 10px;
+  padding: 4px 12px;
   border: 1px dashed var(--color-border);
   border-radius: 14px;
   background: transparent;
@@ -293,6 +305,7 @@
   font-family: inherit;
   width: 80px;
   outline: none;
+  transition: border-color 0.2s ease, width 0.2s ease;
 }
 
 .chip-input:focus {
@@ -310,53 +323,58 @@
   font-size: 14px;
   color: var(--color-text-secondary);
   font-style: italic;
-  padding: 12px 14px;
+  padding: 14px 16px;
   border-left: 3px solid var(--color-primary);
-  background: var(--color-bg);
+  background: var(--color-primary-light);
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   margin-bottom: 4px;
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 .profile-motto-textarea {
   width: 100%;
-  padding: 10px;
+  padding: 10px 12px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   border-left: 3px solid var(--color-primary);
   font-family: var(--font-serif);
   font-size: 13px;
-  line-height: 1.6;
+  line-height: 1.65;
   color: var(--color-text);
-  background: var(--color-bg);
+  background: var(--color-primary-light);
   resize: vertical;
   font-style: italic;
   outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .profile-motto-textarea:focus {
   border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-glow);
 }
 
 /* ---- Social Links ---- */
 .profile-social {
   display: flex;
-  gap: 12px;
+  gap: 8px;
   flex-wrap: wrap;
 }
 
 .social-link {
-  font-size: 13px;
+  font-size: 12px;
   color: var(--color-text-secondary);
-  padding: 4px 12px;
+  padding: 5px 14px;
   border-radius: var(--radius-sm);
   background: var(--color-bg);
-  transition: all 0.2s;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  border: 1px solid transparent;
 }
 
 .social-link:hover {
   background: var(--color-primary-light);
   color: var(--color-primary);
+  border-color: var(--color-primary);
 }
 
 .social-edit-area {
@@ -375,12 +393,13 @@
 .social-label-input {
   width: 60px;
   font-size: 12px;
-  padding: 3px 8px;
+  padding: 4px 8px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   background: var(--color-bg);
   font-family: inherit;
   outline: none;
+  transition: border-color 0.2s ease;
 }
 
 .social-label-input:focus {
@@ -390,12 +409,13 @@
 .social-url-input {
   flex: 1;
   font-size: 12px;
-  padding: 3px 8px;
+  padding: 4px 8px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   background: var(--color-bg);
   font-family: inherit;
   outline: none;
+  transition: border-color 0.2s ease;
 }
 
 .social-url-input:focus {
@@ -407,7 +427,7 @@
   height: 20px;
   border-radius: 50%;
   border: none;
-  background: rgba(0, 0, 0, 0.08);
+  background: rgba(0, 0, 0, 0.06);
   color: var(--color-text-secondary);
   font-size: 12px;
   cursor: pointer;
@@ -416,10 +436,11 @@
   justify-content: center;
   padding: 0;
   flex-shrink: 0;
+  transition: all 0.15s ease;
 }
 
 .social-remove-btn:hover {
-  background: #D44;
+  background: var(--color-danger);
   color: #fff;
 }
 
@@ -437,7 +458,7 @@
   justify-content: center;
   padding: 0;
   flex-shrink: 0;
-  transition: all 0.2s;
+  transition: all 0.2s ease;
 }
 
 .social-add-btn:hover {
@@ -493,9 +514,7 @@
     grid-column: 1 / -1;
   }
 
-  .profile-section,
-  .profile-motto,
-  .profile-social {
+  .profile-section {
     grid-column: 1 / -1;
   }
 }

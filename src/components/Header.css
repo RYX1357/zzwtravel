@@ -1,18 +1,18 @@
 .site-header {
-  background: var(--color-surface);
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
   border-bottom: 1px solid var(--color-border);
   position: sticky;
   top: 0;
   z-index: 100;
-  backdrop-filter: blur(12px);
-  background: rgba(255, 255, 255, 0.85);
 }
 
 .header-inner {
   max-width: var(--content-max-width);
   margin: 0 auto;
   padding: 0 24px;
-  height: 56px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -23,10 +23,11 @@
   align-items: center;
   gap: 10px;
   color: var(--color-text);
-  font-size: 18px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
   text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 .header-logo:hover {
@@ -34,10 +35,8 @@
 }
 
 .logo-icon {
-  font-size: 22px;
+  font-size: 20px;
   display: inline-block;
-  transform: rotate(-15deg);
-  filter: grayscale(0.3);
 }
 
 /* ---- Edit Controls ---- */
@@ -51,14 +50,16 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  padding: 6px 14px;
+  padding: 7px 16px;
   border: 1.5px solid var(--color-border);
   border-radius: 20px;
   background: var(--color-surface);
   color: var(--color-text-secondary);
   font-size: 13px;
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.2s ease;
+  letter-spacing: 0.01em;
 }
 
 .edit-toggle-btn:hover {
@@ -71,6 +72,7 @@
   background: var(--color-primary);
   color: #fff;
   border-color: var(--color-primary);
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
 }
 
 .edit-icon {
@@ -78,30 +80,31 @@
 }
 
 .reset-btn {
-  padding: 6px 12px;
+  padding: 7px 14px;
   border: 1px solid var(--color-border);
   border-radius: 20px;
   background: var(--color-surface);
   color: var(--color-text-muted);
   font-size: 12px;
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.2s ease;
 }
 
 .reset-btn:hover {
-  border-color: #D48888;
-  color: #C55555;
-  background: #FDF5F5;
+  border-color: var(--color-danger);
+  color: var(--color-danger);
+  background: var(--color-danger-light);
 }
 
 @media (max-width: 640px) {
   .header-inner {
     padding: 0 16px;
-    height: 50px;
+    height: 52px;
   }
 
   .header-logo {
-    font-size: 16px;
+    font-size: 15px;
   }
 
   .edit-label {
@@ -109,8 +112,8 @@
   }
 
   .edit-toggle-btn {
-    width: 34px;
-    height: 34px;
+    width: 36px;
+    height: 36px;
     padding: 0;
     justify-content: center;
     border-radius: 50%;
