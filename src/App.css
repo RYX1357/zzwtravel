@@ -40,7 +40,6 @@
   top: 84px;
 }
 
-/* Mobile detail overlay */
 .mobile-overlay {
   display: none;
 }
@@ -81,9 +80,9 @@
     display: flex;
     position: fixed;
     inset: 0;
-    background: rgba(15, 23, 42, 0.5);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     z-index: 1000;
     align-items: flex-end;
     animation: fadeIn 0.2s ease;
@@ -98,6 +97,7 @@
     padding: 24px 16px 32px;
     position: relative;
     animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    border-top: 1px solid var(--color-border);
   }
 
   .mobile-drawer-close {
@@ -107,7 +107,7 @@
     width: 32px;
     height: 32px;
     border: none;
-    background: var(--color-bg);
+    background: rgba(255, 255, 255, 0.05);
     border-radius: 50%;
     font-size: 22px;
     color: var(--color-text-secondary);

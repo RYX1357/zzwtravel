@@ -45,18 +45,18 @@ export default function ChinaMap({ visitedCities, onCityClick }: ChinaMapProps) 
       backgroundColor: 'transparent',
       tooltip: {
         trigger: 'item',
-        backgroundColor: '#fff',
-        borderColor: '#E2E8F0',
+        backgroundColor: '#1A2540',
+        borderColor: '#243850',
         borderWidth: 1,
         padding: [10, 14],
         textStyle: {
-          color: '#0F172A',
+          color: '#E2E8F0',
           fontSize: 13,
         },
         formatter: (params: { name: string }) => {
           const isVisited = visitedNames.has(params.name)
           const status = isVisited ? '已访问' : '未访问'
-          const color = isVisited ? '#3B82F6' : '#94A3B8'
+          const color = isVisited ? '#60A5FA' : '#64748B'
           return `<strong>${params.name}</strong><br/>
             <span style="font-size:12px;color:${color}">${status}</span>`
         },
@@ -69,11 +69,11 @@ export default function ChinaMap({ visitedCities, onCityClick }: ChinaMapProps) 
         aspectScale: 0.85,
         label: { show: false },
         itemStyle: {
-          areaColor: '#F1F5F9',
-          borderColor: '#CBD5E1',
+          areaColor: '#1A2540',
+          borderColor: '#2A3A55',
           borderWidth: 0.8,
-          shadowColor: 'rgba(0,0,0,0.04)',
-          shadowBlur: 8,
+          shadowColor: 'rgba(0,0,0,0.3)',
+          shadowBlur: 12,
         },
         emphasis: {
           disabled: true,
@@ -87,14 +87,14 @@ export default function ChinaMap({ visitedCities, onCityClick }: ChinaMapProps) 
           symbolSize: 4,
           symbol: 'circle',
           itemStyle: {
-            color: '#CBD5E1',
-            borderColor: 'rgba(255,255,255,0.8)',
+            color: '#334155',
+            borderColor: 'rgba(30, 45, 68, 0.8)',
             borderWidth: 1,
           },
           label: { show: false },
           emphasis: {
             scale: 1.4,
-            itemStyle: { color: '#94A3B8' },
+            itemStyle: { color: '#64748B' },
           },
           zlevel: 1,
         },
@@ -106,25 +106,25 @@ export default function ChinaMap({ visitedCities, onCityClick }: ChinaMapProps) 
           symbol: 'circle',
           itemStyle: {
             color: '#3B82F6',
-            borderColor: '#FFFFFF',
+            borderColor: '#0B1120',
             borderWidth: 2.5,
-            shadowColor: 'rgba(59, 130, 246, 0.45)',
-            shadowBlur: 18,
+            shadowColor: 'rgba(59, 130, 246, 0.6)',
+            shadowBlur: 22,
             shadowOffsetY: 2,
           },
           label: {
             show: true,
             position: 'right',
             distance: 8,
-            color: '#0F172A',
+            color: '#E2E8F0',
             fontSize: 12,
             fontWeight: 600,
           },
           emphasis: {
             scale: 1.6,
             itemStyle: {
-              color: '#2563EB',
-              shadowBlur: 28,
+              color: '#60A5FA',
+              shadowBlur: 32,
             },
             label: {
               fontSize: 14,
@@ -152,7 +152,6 @@ export default function ChinaMap({ visitedCities, onCityClick }: ChinaMapProps) 
 
   useEffect(() => {
     initChart()
-
     return () => {
       if (chartInstance.current) {
         const handler = (chartInstance.current as { _resizeHandler?: () => void })._resizeHandler
