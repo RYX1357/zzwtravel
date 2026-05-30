@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p src/components src/data src/types src/hooks public/photos .github/workflows)",
+      "Bash(npm install *)"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\Ruany\\Desktop\\zzwtravel\\src"
+    ]
+  }
+}

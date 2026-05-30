@@ -1,0 +1,249 @@
+/* 空状态 */
+.city-detail-empty {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: 48px 28px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-border);
+  text-align: center;
+}
+
+.empty-illustration {
+  color: var(--color-text-muted);
+}
+
+.empty-icon {
+  font-size: 44px;
+  display: block;
+  margin-bottom: 14px;
+}
+
+.empty-illustration h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 8px;
+}
+
+.empty-illustration p {
+  font-size: 13px;
+  line-height: 1.8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.highlight-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  box-shadow: 0 0 8px var(--color-primary-glow);
+}
+
+/* 城市详情卡片 */
+.city-detail {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-border);
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+}
+
+.city-detail-header {
+  padding: 24px 24px 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.city-name {
+  font-family: var(--font-serif);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: 1px;
+}
+
+.city-date {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+/* 照片 */
+.city-photos {
+  padding: 16px 24px 0;
+}
+
+.photo-scroll {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 4px;
+}
+
+.photo-card {
+  flex: 0 0 200px;
+  height: 150px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  scroll-snap-align: start;
+  background: var(--color-bg);
+}
+
+.photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: var(--color-text-muted);
+  font-size: 12px;
+}
+
+.photo-placeholder {
+  height: 130px;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--color-text-muted);
+  font-size: 13px;
+}
+
+/* 标签 */
+.city-tags {
+  padding: 14px 24px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.city-tag {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+/* 评分 */
+.city-rating {
+  padding: 12px 24px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.rating-label {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.rating-stars {
+  display: flex;
+  gap: 2px;
+}
+
+.star {
+  font-size: 16px;
+  color: #DDD6CB;
+}
+
+.star.filled {
+  color: #E8A840;
+}
+
+/* 元数据行 */
+.city-meta-row {
+  padding: 10px 24px 0;
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.meta-label {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.meta-value {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+/* 日记 */
+.city-diary {
+  padding: 20px 24px 24px;
+}
+
+.diary-title {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.diary-content {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+}
+
+.diary-content p {
+  margin-bottom: 10px;
+}
+
+/* 滚动条微调 */
+.city-detail::-webkit-scrollbar {
+  width: 4px;
+}
+
+@media (max-width: 960px) {
+  .city-detail {
+    max-height: none;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+  }
+
+  .city-detail-header,
+  .city-photos,
+  .city-tags,
+  .city-rating,
+  .city-meta-row,
+  .city-diary {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .city-detail-header {
+    padding-top: 0;
+  }
+}

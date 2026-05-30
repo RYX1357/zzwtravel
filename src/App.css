@@ -1,0 +1,137 @@
+/* ============================================
+   App Layout
+   ============================================ */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+  padding: 0 24px;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  width: 100%;
+}
+
+.hero-section {
+  display: grid;
+  grid-template-columns: 300px 1fr 340px;
+  gap: 32px;
+  align-items: start;
+  padding: 32px 0 48px;
+}
+
+.hero-left {
+  position: sticky;
+  top: 24px;
+}
+
+.hero-center {
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-right {
+  position: sticky;
+  top: 24px;
+}
+
+/* 移动端城市详情弹出层 */
+.mobile-overlay {
+  display: none;
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+@media (max-width: 1200px) {
+  .hero-section {
+    grid-template-columns: 280px 1fr 300px;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 960px) {
+  .hero-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 16px 0 32px;
+  }
+
+  .hero-left {
+    position: static;
+    width: 100%;
+  }
+
+  .hero-center {
+    min-height: 400px;
+    width: 100%;
+  }
+
+  .hero-right {
+    display: none;
+  }
+
+  .mobile-overlay {
+    display: flex;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+    align-items: flex-end;
+    animation: fadeIn 0.25s ease;
+  }
+
+  .mobile-drawer {
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    background: var(--color-surface);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    padding: 24px 16px 32px;
+    position: relative;
+    animation: slideUp 0.3s ease;
+  }
+
+  .mobile-drawer-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: var(--color-bg);
+    border-radius: 50%;
+    font-size: 22px;
+    color: var(--color-text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+}
+
+@media (max-width: 640px) {
+  .main-content {
+    padding: 0 12px;
+  }
+
+  .hero-center {
+    min-height: 320px;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
